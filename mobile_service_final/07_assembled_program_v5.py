@@ -1,3 +1,9 @@
+"""
+Mobile Service Program
+Sonja Li
+4/07/22
+v5
+"""
 from tkinter import *
 from functools import partial  # to prevent unwanted windows
 from tkinter import ttk
@@ -7,6 +13,11 @@ import string
 
 class NewJob:
     def __init__(self):
+        """
+        display items in New Job page and allow input for new jobs
+        arguments --> none
+        return --> int, strings, boolean
+        """
 
         # GUI for New Job page
         # set up GUI frames
@@ -106,6 +117,11 @@ class NewJob:
         self.all_jobs_btn.config(state=DISABLED)
 
     def store_info(self):
+        """
+        gets input from GUI
+        arguments --> none
+        return --> int, float, strings, boolean
+        """
         # check customer name entry is not blank
         if self.customer_name.get() == "" or self.distance.get() == "" or self.virus_time.get() == "":
             self.error_success_label.configure(text="Please do not leave any of the entries blank.",
@@ -164,6 +180,11 @@ class NewJob:
                         self.calculate_charge(job_num, distance, virus_time, wof_tune)
 
     def calculate_charge(self, job_num, distance, virus_time, wof_tune):
+        """
+        calculates job charge
+        arguments --> job_num, distance, virus_time, wof_tune
+        return --> float
+        """
         # round distance to the nearest integer
         DECIMALS = 0
         MULTIPLIER = 10 ** DECIMALS
@@ -203,14 +224,29 @@ class NewJob:
         print(self.all_jobs_list)
 
     def to_all_jobs(self, all_jobs_list):
+        """
+        opens All Jobs page
+        arguments --> all_jobs_list
+        return --> none
+        """
         AllJobs(self, all_jobs_list)
 
     def to_quit(self):
+        """
+        quits program
+        arguments --> none
+        return --> none
+        """
         new_job_box.destroy()
 
 
 class AllJobs:
     def __init__(self, partner, all_jobs_list):
+        """
+        display items in All Jobs page
+        arguments --> partner, all_jobs_list
+        return --> int, strings, float
+        """
 
         # create All Jobs page
         self.all_jobs_box = Toplevel()
@@ -290,6 +326,11 @@ class AllJobs:
         self.no_job_msg.grid(row=2, columnspan=2)
 
     def display_info(self, scroll):
+        """
+        changes what job info is displayed
+        arguments --> scroll
+        return --> int, strings, float
+        """
 
         # change displayed job info
         if scroll == "next":
@@ -314,6 +355,11 @@ class AllJobs:
             self.next_button.config(state=NORMAL)
 
     def close_all_jobs(self, partner):
+        """
+        closes All Jobs page
+        arguments --> partner
+        return --> none
+        """
         # put All Jobs button back to normal
         partner.all_jobs_btn.config(state=NORMAL)
 
